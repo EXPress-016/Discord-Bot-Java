@@ -1,0 +1,28 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+mainClassName = 'ml.express_016.DBJ.Bot'
+
+version '1.0'
+sourceCompatibility = targetCompatibility = 11
+
+shadowJar {
+    archiveFileName = "Bot.jar"
+}
+repositories {
+    mavenCentral()
+    maven {
+        url "https://m2.dv8tion.net/releases"
+    }
+}
+
+dependencies {
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.9'
+    implementation 'org.reflections:reflections:0.10.2'
+    implementation 'io.github.cdimascio:dotenv-java:2.2.3'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+}
+
+compileJava.options.encoding = 'UTF-8'
