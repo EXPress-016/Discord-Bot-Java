@@ -1,18 +1,18 @@
 package ml.express_016.DBJ;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import ml.express_016.DBJ.events.SlashCommandInteraction;
 import ml.express_016.DBJ.handler.CommandsList;
+import ml.express_016.DBJ.handler.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
 
 public class Bot {
     public static void main(String[] arguments) throws Exception {
-        Dotenv dotenv = Dotenv.load();
-        JDA api = JDABuilder.createDefault(dotenv.get("TOKEN")).build();
+        Config config = new Config();
+        JDA api = JDABuilder.createDefault(config.get("TOKEN")).build();
         api.awaitReady();
-        CommandsList.registerCommands(api, dotenv.get("GUILD_ID"));
+        CommandsList.registerCommands(api, config.get("GUILD_ID"));
         api.addEventListener(new SlashCommandInteraction());
     }
 }
