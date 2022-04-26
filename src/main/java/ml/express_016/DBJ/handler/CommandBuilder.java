@@ -1,10 +1,16 @@
 package ml.express_016.DBJ.handler;
 
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class CommandBuilder {
-    public SlashCommandData commandData;
+    private SlashCommandData commandData;
+    private final List<Permission> userRequiredPermissions = new ArrayList<>();
 
     public void setCommandData(SlashCommandData commandData) {
         this.commandData = commandData;
@@ -16,6 +22,14 @@ public abstract class CommandBuilder {
 
     public String getDescription() {
         return commandData.getDescription();
+    }
+
+    public void setUserRequiredPermissions(Permission... permissions) {
+        userRequiredPermissions.addAll(Arrays.asList(permissions));
+    }
+
+    public List<Permission> getRequiredUserPermissions() {
+        return userRequiredPermissions;
     }
 
     public SlashCommandData getCommandData() {

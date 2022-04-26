@@ -29,7 +29,7 @@ public class CommandsList {
         addCommandsToList();
         CommandListUpdateAction ListOfCommands = mainGuild.updateCommands();
         for (CommandBuilder command : getCommands().values()) {
-            ListOfCommands.addCommands(command.commandData);
+            ListOfCommands.addCommands(command.getCommandData());
         }
         ListOfCommands.queue();
     }
